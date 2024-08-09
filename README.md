@@ -7,7 +7,7 @@ Bicep templates to create Azure Service Health Alerts at a subscription scope le
 tenantId="your-tenant-id"
 
 # Get the list of subscriptions for the specified tenantId
-subscriptions=$(az account list --tenant $tenantId --query "[].id" -o tsv)
+subscriptions=$(az account list --query "[?tenantId=='$tenantId'].id" -o tsv)
 
 # Loop through each subscription and run the Bicep deployment
 for subscription in $subscriptions; do
